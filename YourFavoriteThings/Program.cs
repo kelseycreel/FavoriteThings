@@ -1,7 +1,8 @@
 ﻿using System;
-using YourFavoriteThings.Food;
-using YourFavoriteThings.Pet;
-using YourFavoriteThings.Game;
+using System.Collections.Generic;
+using YourFavoriteThings.Composition.Books;
+using YourFavoriteThings.Composition.Foods;
+using YourFavoriteThings.Composition.Movies;
 
 namespace YourFavoriteThings
 {
@@ -9,30 +10,44 @@ namespace YourFavoriteThings
     {
         static void Main(string[] args)
         {
-            var pickle = new Food.Food("pickle", "in my belly");
-            pickle.Eat();
-
-            var popcorn = new Food.Food("popcorn", "in my kitchen")
+            var ReadyPlayerOne = new ReadBook()
             {
-                Age = 2
+                Title = "Ready Player One",
+                IsSeries = false,
+                BookType = BookType.paperback
             };
-            popcorn.Eat();
 
-            var stormy = new Pet.Pet("Stormy", "woof")
+            ReadyPlayerOne.Read();
+            ReadyPlayerOne.Stats();
+
+            var ThousandLeagues = new UnreadBook()
             {
-                Animal = "dog",
-                IsFriendly = true
+                Title = "Thousand Leagues under the Sea",
+                IsSeries = false,
+                BookType = BookType.hardback
             };
-            stormy.Greet();
-            stormy.Fetch();
 
-            var blue = new Pet.Pet("Blue", "bark bark");
-            blue.Greet();
-            blue.Fetch();
+            ThousandLeagues.Read();
+            ThousandLeagues.Stats();
 
-            var monopoly = new Game.Game("Monopoly", "board");
-            monopoly.Classify();
-            monopoly.Win(2);
+            var eggs = new Food()
+            {
+                Name = "scrambled eggs",
+                IsMeal = true,
+                FoodCategory = FoodCategory.breakfast
+            };
+
+            eggs.Eat();
+            eggs.Leftovers();
+
+            var Indiana = new OwnedMovie()
+            {
+                Name = "Indiana Jones and the Holy Grail",
+                MovieType = MovieType.action,
+                Rating = "PG-13"
+            };
+
+            Indiana.Watch();
 
             Console.ReadKey();
         }
